@@ -17,7 +17,7 @@ Career Starter is a web application that provides users with career study paths 
 
 ## Installation
 
-1. Clone the repository: `git clone <repository-url>`
+1. Clone the repository: `git clone <https://github.com/sammiearchie77/career-starter/>`
 2. Navigate to the project directory: `cd career-starter`
 3. Set up the backend:
    - Navigate to the `backend` directory: `cd backend`
