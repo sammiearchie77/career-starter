@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Careers } from "../utils/consts";
 
-// const url = "http://127.0.0.1:5000/todo/api/v1.0/tasks";
+const url = "http://localhost:8080/api/v1/careers";
 
 export default function SearchComponent (){
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,8 +15,9 @@ export default function SearchComponent (){
   const handleSubmit = e => {
     e.preventDefault();
   
-    axios.get(Careers)
+    axios.get(url)
       .then((response) => {
+        console.log(response);
         setSearchResults(response.data.results);
       })
       .catch((error) => {
@@ -28,6 +29,7 @@ export default function SearchComponent (){
       <div>
         <form onSubmit={handleSubmit}>
           <input
+            id="text"
             type="text"
             value={searchTerm}
             onChange={handleChange}

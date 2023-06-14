@@ -34,9 +34,7 @@ export default function Career() {
                                 </Card>
                             </div>
                             <div>
-                                <form>
-                                    <SearchComponent />
-                                </form>
+                                <SearchComponent />
                             </div>
                         </div>
                         <div className="flex flex-wrap gap-x-10 py-20">

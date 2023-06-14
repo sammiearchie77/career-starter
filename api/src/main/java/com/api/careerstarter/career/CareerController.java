@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.naming.NameNotFoundException;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
+@CrossOrigin(
+        origins = "http://localhost:3000"
+)
 @RequestMapping(path = "api/v1/careers")
 public class CareerController {
 
@@ -27,7 +31,7 @@ public class CareerController {
 
     /**
      * @return - get careers
-     */
+     */     
     @GetMapping
     public List<Career> getCareers(){
 		return careerService.getCareers();
