@@ -2,6 +2,9 @@ package com.api.careerstarter.career;
 
 import java.util.List;
 
+import javax.naming.NameNotFoundException;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
+@CrossOrigin(
+        origins = "http://localhost:3000"
+)
 @RequestMapping(path = "api/v1/careers")
 public class CareerController {
 
@@ -23,11 +29,23 @@ public class CareerController {
         this.careerService = careerService;
     }
 
+    /**
+     * @return - get careers
+     */     
     @GetMapping
     public List<Career> getCareers(){
 		return careerService.getCareers();
 	}
 
+    @GetMapping(path = "/{id}")
+    public Career getCareerById(@PathVariable Long careerId) throws NameNotFoundException{
+        return careerService.getCareerById(careerId);
+    }
+
+    @GetMapping(path = "/search")
+    public List<Career> searchCareers(@RequestParam String q){
+        return careerService.searchCareers(q);
+    }
     /**
      * @param career
      */
@@ -36,7 +54,7 @@ public class CareerController {
         careerService.addNewCareer(career);
     }
 
-    @DeleteMapping(path = "{careerId}")
+    @DeleteMapping(path = "/{careerId}")
     public void deleteCareer(@PathVariable("careerId") Long careerId){
         careerService.deleteCareer(careerId);
     }
@@ -45,11 +63,16 @@ public class CareerController {
      * @param careerId
      * @param title
      * @param description
+     * @param requiredSkill
+     * @param salaryRange
      */
-    @PutMapping(value="{careerId}")
+    @PutMapping(value="/{careerId}")
     public void updateCareer(@PathVariable("careerId") Long careerId,
         @RequestParam(required = false) String title,
-        @RequestParam(required = false) String description) {
-        careerService.updateCareer(careerId, title, description);
+        @RequestParam(required = false) String description,
+        @RequestParam(required = false) String requiredSkill,
+        @RequestParam(required = false) String salaryRange) {
+        careerService.updateCareer(
+            careerId, title, description, requiredSkill, salaryRange);
     }
 }

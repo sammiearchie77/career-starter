@@ -2,22 +2,23 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-import career from '../img/boss.png'
+import career from '../img/code.png'
 
 const navigation = [
-  {id: 1, name: 'Careers', href: '/careers' },
-  {id: 2, name: 'Features', href: '/features' },
-  {id: 3, name: 'About Us', href: '/about' },
-  {id: 4, name: 'Contact Us', href: '/contact' },
+  {id: 1, name: 'Home', href: '/'},
+  {id: 2, name: 'Careers', href: '/pages/careers' },
+  {id: 3, name: 'Features', href: '/pages/feature' },
+  {id: 4, name: 'About Us', href: '/pages/about' },
+  {id: 5, name: 'Contact Us', href: '/pages/contact' },
 ]
-console.log(navigation)
+
 export default function Navbar(){
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     return (
         <header className="absolute inset-x-0 top-0 z-50">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
-            <Link href="/" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Career Starter</span>
               <img
                 className="h-8 w-auto"
@@ -38,13 +39,13 @@ export default function Navbar(){
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <Link key={item.id} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+              <Link key={item.id} to={item.href} className="text-lg font-semibold leading-6 text-gray-900 hover:ring-2 hover:rounded hover:p-1 hover:bg-ring-gray-50">
                 {item.name}
               </Link>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
+            <Link to="/pages/login" className="text-lg font-semibold leading-6 text-gray-900">
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
@@ -53,7 +54,7 @@ export default function Navbar(){
           <div className="fixed inset-0 z-50" />
           <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <Link href="#" className="-m-1.5 p-1.5">
+              <Link to="/pages/career" className="-m-1.5 p-1.5">
                 <span className="sr-only">Career Starter</span>
                 <img
                   className="h-8 w-auto"
@@ -76,8 +77,8 @@ export default function Navbar(){
                   {navigation.map((item) => (
                     <Link
                       key={item.id}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      to={item.href}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
                       {item.name}
                     </Link>
@@ -85,8 +86,8 @@ export default function Navbar(){
                 </div>
                 <div className="py-6">
                   <Link
-                    href="/login"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    to="/pages/login"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Log in
                   </Link>
